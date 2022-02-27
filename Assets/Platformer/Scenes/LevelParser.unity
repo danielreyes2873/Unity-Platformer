@@ -565,7 +565,7 @@ MonoBehaviour:
   runForce: 10
   maxRunSpeed: 6
   jumpForce: 13.5
-  jumpBonus: 3.55
+  jumpBonus: 8.13
   feetOnGround: 1
 --- !u!1 &710571482
 GameObject:
@@ -1210,6 +1210,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mario Basic
       objectReference: {fileID: 0}
+    - target: {fileID: 826495448001333321, guid: 85754112c5d81bd45a121ed5e2f1148a, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: daae658e3ae1d8243ac9f1eaeecbfabc, type: 3}
+    - target: {fileID: 826495448001333321, guid: 85754112c5d81bd45a121ed5e2f1148a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8bc13795e9b18f249a0058823372a7b3, type: 2}
+    - target: {fileID: 3558236448130150869, guid: 85754112c5d81bd45a121ed5e2f1148a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 67acb26e31c117b4f82295b662dabe5b, type: 2}
     - target: {fileID: 6314511666177232983, guid: 85754112c5d81bd45a121ed5e2f1148a, type: 3}
       propertyPath: m_CastShadows
       value: 1

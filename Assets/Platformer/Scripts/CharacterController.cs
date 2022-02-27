@@ -11,12 +11,14 @@ public class CharacterController : MonoBehaviour
     public bool feetOnGround;
     private Rigidbody body;
     private Collider collider;
+    private Animator animComp;
     
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+        animComp = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,18 @@ public class CharacterController : MonoBehaviour
         
         float axis = Input.GetAxis("Horizontal");
         body.AddForce(Vector3.right * runForce * axis, ForceMode.Force);
+
+        var rotationVector = transform.rotation.eulerAngles;
+        
+        if (axis > 0.1)
+        {
+            rotationVector.y = 90f;
+        } else if (axis < -0.1)
+        {
+            rotationVector.y = -90f;
+        }
+
+        transform.rotation = Quaternion.Euler(rotationVector);
 
         if (feetOnGround && Input.GetKeyDown(KeyCode.Space))
         {
@@ -48,5 +62,8 @@ public class CharacterController : MonoBehaviour
             float newX = body.velocity.x * (1f - Time.deltaTime * 5f);
             body.velocity = new Vector3(newX, body.velocity.y, body.velocity.z);
         }
+        
+        animComp.SetFloat("Speed", body.velocity.magnitude);
+        animComp.SetBool("Jumping", !feetOnGround);
     }
 }
