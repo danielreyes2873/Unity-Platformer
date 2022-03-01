@@ -303,12 +303,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6568559d6661b4eba05e67f1401a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filename: Test
+  filename: CustomLevel
   rockPrefab: {fileID: 2652198492393551387, guid: 981bb3414d36746408a1c5ee5244f1b1, type: 3}
   brickPrefab: {fileID: 2652198492393551387, guid: d94221691cf23ce429136e2be05d002b, type: 3}
   questionBoxPrefab: {fileID: 2652198492393551387, guid: 97d0fe6850ab3714eaa654f26f4ca9f8, type: 3}
   stonePrefab: {fileID: 2652198492393551387, guid: e2bf2963d586ea44ea04e84c9ae1fa8e, type: 3}
+  waterPrefab: {fileID: 5750399273862017761, guid: 200de6536777c72429fc895d23bbd2c1, type: 3}
+  flagpolePrefab: {fileID: 9055983083673811503, guid: 6971850e92889b249ae74896d50af25b, type: 3}
+  flagPrefab: {fileID: 3836671750339548478, guid: 9d239b9830d86ac40993292228cd0ad6, type: 3}
   environmentRoot: {fileID: 727678647}
+  bg: {fileID: 859565989}
 --- !u!1 &483875661
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,8 +569,11 @@ MonoBehaviour:
   runForce: 10
   maxRunSpeed: 6
   jumpForce: 13.5
-  jumpBonus: 8.13
+  jumpBonus: 4.56
   feetOnGround: 1
+  hitBlock: 0
+  cam: {fileID: 0}
+  cs: {fileID: 963194229}
 --- !u!1 &710571482
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +924,8 @@ MonoBehaviour:
   timerText: {fileID: 483875663}
   scoreText: {fileID: 2057505268}
   coinsText: {fileID: 2139738768}
+  gameOver: 0
+  mario: {fileID: 702187946}
 --- !u!1 &1362697974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1164,9 @@ MonoBehaviour:
   jumpForce: 15
   jumpBonus: 3
   feetOnGround: 1
+  hitBlock: 0
+  cam: {fileID: 0}
+  cs: {fileID: 0}
 --- !u!1001 &1993703109
 PrefabInstance:
   m_ObjectHideFlags: 0

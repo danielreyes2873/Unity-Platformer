@@ -10,12 +10,20 @@ public class LevelParser : MonoBehaviour
     public GameObject questionBoxPrefab;
     // public GameObject coinPrefab;
     public GameObject stonePrefab;
+    public GameObject waterPrefab;
+    public GameObject flagpolePrefab;
+    public GameObject flagPrefab;
     public Transform environmentRoot;
+
+    public GameObject bg;
+    private SpriteRenderer sr;
 
     // --------------------------------------------------------------------------
     void Start()
     {
         LoadLevel();
+        sr = bg.GetComponent<SpriteRenderer>();
+        sr.enabled = false;
     }
 
     // --------------------------------------------------------------------------
@@ -83,6 +91,22 @@ public class LevelParser : MonoBehaviour
                     // var coin = Instantiate(coinPrefab);
                     // coin.transform.position = new Vector3(column + 0.5f, row + 0.5f, 0f);
                 }
+                else if (letter == 'w')
+                {
+                    var water = Instantiate(waterPrefab);
+                    water.transform.position = new Vector3(column + 0.5f, row + 0.5f, 0f);
+                }
+                else if (letter == 'p')
+                {
+                    var pole = Instantiate(flagpolePrefab);
+                    pole.transform.position = new Vector3(column + 0.5f, row + 0.5f, 0f);
+                }
+                else if (letter == 'f')
+                {
+                    var flag = Instantiate(flagPrefab);
+                    flag.transform.position = new Vector3(column + 1f, row + 0.5f, 0f);
+                }
+                
                 
                 column++;
             }

@@ -15,10 +15,11 @@ public class CameraScript : MonoBehaviour
     private int score = 0;
     private int coins = 0;
     private float accumulatedTime;
-    private float totalTime = 400f;
+    private float totalTime = 100f;
     private GameObject brick;
     private GameObject coin;
-    
+    public bool gameOver = false;
+    public GameObject mario;
     
     // Start is called before the first frame update
     void Start()
@@ -32,17 +33,16 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        accumulatedTime += Time.deltaTime;
-
-        if (accumulatedTime > 1f)
+        if (mario != null)
         {
-            totalTime -= 1f;
-            accumulatedTime = 0f;
+            var newX = mario.transform.position.x;
+            transform.position = new Vector3(newX, transform.position.y, transform.position.z);
         }
-        scoreText.text = "Mario\n" + score.ToString(scoreFormat);
-        timerText.text = "Time\n" + totalTime.ToString(timeFormat);
-        coinsText.text = "x" + coins.ToString(coinFormat);
-        //StartCoroutine(UpdatePickingRaycast());
+        
+        if (!gameOver)
+        {
+            UpdateTimer();
+        }
     }
 
     IEnumerator UpdatePickingRaycast()
@@ -58,8 +58,7 @@ public class CameraScript : MonoBehaviour
                     {
                         score += 200;
                         coins++;
-                        coin = hitInfo.collider.gameObject;
-                        CoinAnimation();
+                        CoinAnimation(hitInfo.collider.gameObject);
                         // Destroy(hitInfo.collider.gameObject);
                         Debug.Log("hit object at " + Input.mousePosition);
                     }
@@ -90,9 +89,53 @@ public class CameraScript : MonoBehaviour
         Destroy(brick);
     }
 
-    private void CoinAnimation()
+    public void CoinAnimation(GameObject passCoin)
     {
-        var c = coin.GetComponent<Animator>();
+        var c = passCoin.GetComponent<Animator>();
         c.SetTrigger("getCoin");
+    }
+
+    private void UpdateTimer()
+    {
+        accumulatedTime += Time.deltaTime;
+
+        if (accumulatedTime > 1f)
+        {
+            totalTime -= 1f;
+            accumulatedTime = 0f;
+        }
+        scoreText.text = "Mario\n" + score.ToString(scoreFormat);
+        timerText.text = "Time\n" + totalTime.ToString(timeFormat);
+        coinsText.text = "x" + coins.ToString(coinFormat);
+        if (totalTime == 0)
+        {
+            gameOver = true;
+            Debug.Log("Time ran out. Game Over!");
+        }
+    }
+
+    public void GameOverEvent()
+    {
+        gameOver = true;
+        Debug.Log("Game Over");
+        Destroy(mario);
+    }
+
+    public void GameWinEvent()
+    {
+        gameOver = true;
+        Debug.Log("You Win!");
+    }
+
+    public void addCoins(GameObject passCoin)
+    {
+        CoinAnimation(passCoin);
+        coins++;
+        score += 100;
+    }
+
+    public void addBrick()
+    {
+        score += 100;
     }
 }
