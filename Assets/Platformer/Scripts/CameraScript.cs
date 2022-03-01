@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,8 +13,8 @@ public class CameraScript : MonoBehaviour
     private string scoreFormat = "000000.##";
     private string timeFormat = "000.##";
     private string coinFormat = "00.##";
-    private int score = 0;
-    private int coins = 0;
+    private static int score = 0;
+    private static int coins = 0;
     private float accumulatedTime;
     private float totalTime = 100f;
     private GameObject brick;
@@ -33,6 +34,11 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (totalTime == 0)
+        {
+            gameOver = true;
+            Destroy(mario);
+        }
         if (mario != null)
         {
             var newX = mario.transform.position.x;
@@ -67,7 +73,7 @@ public class CameraScript : MonoBehaviour
                         
                         brick = hitInfo.collider.gameObject;
                         // Destroy(particle);
-                        StartCoroutine(Break());
+                        StartCoroutine(Break(hitInfo.collider.gameObject));
                         Debug.Log("destroyed object at " + Input.mousePosition);
                     }
                     //Debug.Log($"{hitInfo.collider.gameObject.name}");
@@ -78,18 +84,18 @@ public class CameraScript : MonoBehaviour
         }
     }
 
-    IEnumerator Break()
+    public static IEnumerator Break(GameObject passBrick)
     {
-        var p = brick.GetComponent<ParticleSystem>();
-        var m = brick.GetComponent<MeshRenderer>();
+        var p = passBrick.GetComponent<ParticleSystem>();
+        var m = passBrick.GetComponent<MeshRenderer>();
         p.Play();
         m.enabled = false;
-
+        score += 100;
         yield return new WaitForSeconds(p.main.startLifetime.constantMax);
-        Destroy(brick);
+        Destroy(passBrick);
     }
 
-    public void CoinAnimation(GameObject passCoin)
+    public static void CoinAnimation(GameObject passCoin)
     {
         var c = passCoin.GetComponent<Animator>();
         c.SetTrigger("getCoin");
@@ -123,19 +129,28 @@ public class CameraScript : MonoBehaviour
 
     public void GameWinEvent()
     {
-        gameOver = true;
-        Debug.Log("You Win!");
+        if (!gameOver)
+        {
+            gameOver = true;
+            Debug.Log("You Win!");
+        }
     }
 
-    public void addCoins(GameObject passCoin)
+    public static void AddCoins(GameObject passCoin)
     {
         CoinAnimation(passCoin);
         coins++;
         score += 100;
     }
 
-    public void addBrick()
+    public static void AddBrick(GameObject passBrick)
     {
+        Destroy(passBrick);
         score += 100;
     }
+
+    // private void startBreak(GameObject passBrick)
+    // {
+    //     StartCoroutine(Break(passBrick));
+    // }
 }

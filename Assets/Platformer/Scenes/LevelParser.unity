@@ -305,8 +305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filename: CustomLevel
   rockPrefab: {fileID: 2652198492393551387, guid: 981bb3414d36746408a1c5ee5244f1b1, type: 3}
-  brickPrefab: {fileID: 2652198492393551387, guid: d94221691cf23ce429136e2be05d002b, type: 3}
-  questionBoxPrefab: {fileID: 2652198492393551387, guid: 97d0fe6850ab3714eaa654f26f4ca9f8, type: 3}
+  brickPrefab: {fileID: 895050912606544207, guid: e44626f6d84eae447af1f99b1cfd812b, type: 3}
+  questionBoxPrefab: {fileID: 3948733081860912931, guid: 5c6ac255af7f33c4fbff8d50b4fd048c, type: 3}
   stonePrefab: {fileID: 2652198492393551387, guid: e2bf2963d586ea44ea04e84c9ae1fa8e, type: 3}
   waterPrefab: {fileID: 5750399273862017761, guid: 200de6536777c72429fc895d23bbd2c1, type: 3}
   flagpolePrefab: {fileID: 9055983083673811503, guid: 6971850e92889b249ae74896d50af25b, type: 3}
@@ -572,7 +572,6 @@ MonoBehaviour:
   jumpBonus: 4.56
   feetOnGround: 1
   hitBlock: 0
-  cam: {fileID: 0}
   cs: {fileID: 963194229}
 --- !u!1 &710571482
 GameObject:
@@ -1165,7 +1164,6 @@ MonoBehaviour:
   jumpBonus: 3
   feetOnGround: 1
   hitBlock: 0
-  cam: {fileID: 0}
   cs: {fileID: 0}
 --- !u!1001 &1993703109
 PrefabInstance:
