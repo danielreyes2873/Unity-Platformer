@@ -567,9 +567,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runForce: 10
-  maxRunSpeed: 6
+  runBonus: 3
+  maxRunSpeed: 10
   jumpForce: 13.5
-  jumpBonus: 4.56
+  jumpBonus: 6.46
   feetOnGround: 1
   hitBlock: 0
   cs: {fileID: 963194229}
@@ -1159,6 +1160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runForce: 10
+  runBonus: 3
   maxRunSpeed: 6
   jumpForce: 15
   jumpBonus: 3
